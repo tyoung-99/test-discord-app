@@ -1,5 +1,5 @@
 {
-  "name": "test-discord-app",
+  "name": "test-discord",
   "main": "src/server.js",
   "compatibility_date": "2025-11-06",
 
