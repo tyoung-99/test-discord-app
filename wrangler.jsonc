@@ -18,6 +18,6 @@
   },
 
   "env": {
-    "dev": { "name": "test-discord-app-dev" }
+    "dev": {}
   }
 }
