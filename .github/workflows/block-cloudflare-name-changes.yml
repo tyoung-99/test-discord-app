@@ -16,7 +16,7 @@ jobs:
         id: author_check
         run: |
           echo "PR author: ${{ github.actor }}"
-          if [ "${{ github.actor }}" == "cloudflare[bot]" ]; then
+          if [ "${{ github.actor }}" == "cloudflare-workers-and-pages[bot]" ]; then
             echo "is_cf=true" >> $GITHUB_ENV
           else
             echo "is_cf=false" >> $GITHUB_ENV
@@ -31,7 +31,8 @@ jobs:
           if echo "$diff" | grep -q '^[-+]name\s*='; then
             echo "Worker name changed"
             echo "name_changed=true" >> $GITHUB_ENV
-          else
+            else
+            echo "Worker name not changed"
             echo "name_changed=false" >> $GITHUB_ENV
           fi
 
