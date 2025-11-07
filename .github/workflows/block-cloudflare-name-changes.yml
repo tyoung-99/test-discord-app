@@ -37,7 +37,7 @@ jobs:
 
       - name: Close PR
         if: env.name_changed == 'true' && env.is_cf == 'true'
-        uses: peter-evans/close-pull-request@v3
+        uses: peter-evans/close-pull@v3
         with:
           comment: Closing Cloudflare's automatic PR for worker name change.
           delete-branch: true
