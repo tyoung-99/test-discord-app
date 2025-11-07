@@ -25,5 +25,6 @@ jobs:
         if: env.block == 'true'
         uses: peter-evans/close-pull@v3
         with:
+          pull-request-number: ${{ github.event.pull_request.number }}
           comment: Closing Cloudflare's automatic PR for worker name change.
           delete-branch: true
