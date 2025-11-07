@@ -1,4 +1,4 @@
-name: Correct worker name on dev/prod
+name: Deploy Cloudflare Worker with Correct Name
 
 on:
   push:
@@ -7,7 +7,9 @@ on:
       - dev
 
 jobs:
-  set-name:
+  deploy-worker:
+    if: github.event.head_commit.message != 'Auto-set worker name in wrangler.jsonc after merge'
+
     permissions:
       contents: write
 
@@ -41,4 +43,23 @@ jobs:
             git add wrangler.jsonc
             git commit -m "Auto-set worker name in wrangler.jsonc after merge"
             git push
+          fi
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+      - name: Install Wrangler
+        run: npm install -g wrangler
+
+      - name: Authenticate with Cloudflare
+        run: wrangler login --api-token ${{ secrets.CLOUDFLARE_API_TOKEN }}
+
+      - name: Deploy Worker
+        run: |
+          if [[ "${GITHUB_REF}" == "refs/heads/dev" ]]; then
+            wrangler deploy --env dev
+          elif [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
+            wrangler deploy
           fi
