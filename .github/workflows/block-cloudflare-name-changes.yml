@@ -23,8 +23,6 @@ jobs:
 
       - name: Close PR
         if: env.block == 'true'
-        run: |
-          PR_NUMBER=${{ github.event.pull_request.number }}
-          gh pr close --comment "Closing Cloudflare's automatic PR for worker name change" --delete-branch ${{ github.event.pull_request.number }}
+        run: gh pr close ${{ github.event.pull_request.number }} --comment "Closing Cloudflare's automatic PR for worker name change" --delete-branch
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
