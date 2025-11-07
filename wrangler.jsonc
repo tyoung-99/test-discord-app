@@ -1,5 +1,4 @@
 {
-  "name": "test-discord-app",
   "main": "src/server.js",
   "compatibility_date": "2025-11-06",
 
@@ -15,5 +14,10 @@
       "persist": true,
       "head_sampling_rate": 1
     }
+  },
+
+  "env": {
+    "dev": { "name": "test-discord-app-dev" },
+    "prod": { "name": "test-discord-app" }
   }
 }
