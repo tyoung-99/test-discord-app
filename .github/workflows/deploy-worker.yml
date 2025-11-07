@@ -59,7 +59,7 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           if [[ "${GITHUB_REF}" == "refs/heads/dev" ]]; then
-            wrangler deploy --env dev
+            wrangler deploy --env dev --no-bundle
           elif [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
-            wrangler deploy
+            wrangler deploy --no-bundle
           fi
