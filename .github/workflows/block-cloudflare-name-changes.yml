@@ -9,35 +9,20 @@ jobs:
   block-name-change:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout PR code
-        uses: actions/checkout@v3
-
-      - name: Check PR author
-        id: author_check
+      - name: Check PR title
+        id: check_title
         run: |
-          echo "PR author: ${{ github.actor }}"
-          if [ "${{ github.actor }}" == "cloudflare-workers-and-pages[bot]" ]; then
-            echo "is_cf=true" >> $GITHUB_ENV
+          PR_TITLE="${{ github.event.pull_request.title }}"
+          echo "PR title: $PR_TITLE"
+          TARGET_TITLE="Update name in Wrangler configuration file to match deployed Worker"
+          if [ "$PR_TITLE" == "$TARGET_TITLE" ]; then
+            echo "block=true" >> $GITHUB_ENV
           else
-            echo "is_cf=false" >> $GITHUB_ENV
-          fi
-
-      - name: Check worker name change
-        id: check_name
-        run: |
-          git fetch origin ${{ github.base_ref }}
-          diff=$(git diff origin/${{ github.base_ref }} HEAD -- wrangler.toml || true)
-
-          if echo "$diff" | grep -q '^[-+]name\s*='; then
-            echo "Worker name changed"
-            echo "name_changed=true" >> $GITHUB_ENV
-            else
-            echo "Worker name not changed"
-            echo "name_changed=false" >> $GITHUB_ENV
+            echo "block=false" >> $GITHUB_ENV
           fi
 
       - name: Close PR
-        if: env.name_changed == 'true' && env.is_cf == 'true'
+        if: env.block == 'true'
         uses: peter-evans/close-pull@v3
         with:
           comment: Closing Cloudflare's automatic PR for worker name change.
