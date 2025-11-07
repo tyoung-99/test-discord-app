@@ -50,8 +50,8 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Install Wrangler
-        run: npm install -g wrangler
+      - name: Install Dependencies
+        run: npm i -g
 
       - name: Deploy Worker
         env:
@@ -59,7 +59,7 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           if [[ "${GITHUB_REF}" == "refs/heads/dev" ]]; then
-            wrangler deploy --env dev --no-bundle
+            wrangler deploy --env dev
           elif [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
-            wrangler deploy --no-bundle
+            wrangler deploy
           fi
