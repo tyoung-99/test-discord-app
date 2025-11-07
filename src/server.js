@@ -67,7 +67,7 @@ function handleHelloCommand() {
       components: [
         {
           type: MessageComponentTypes.TEXT_DISPLAY,
-          content: "Hello World",
+          content: "Hello Developer",
         },
       ],
     },
