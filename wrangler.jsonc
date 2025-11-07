@@ -14,10 +14,10 @@
       "enabled": false,
       "persist": true,
       "head_sampling_rate": 1
-    },
-
-    "env": {
-      "dev": {}
     }
+  },
+
+  "env": {
+    "dev": { "name": "test-discord-app-dev" }
   }
 }
