@@ -1,4 +1,4 @@
-name: Deploy Cloudflare Worker with Correct Name
+name: Deploy Dev/Prod Cloudflare Worker
 
 on:
   push:
@@ -8,8 +8,6 @@ on:
 
 jobs:
   deploy-worker:
-    if: github.event.head_commit.message != 'Auto-set worker name in wrangler.jsonc after merge'
-
     permissions:
       contents: write
 
