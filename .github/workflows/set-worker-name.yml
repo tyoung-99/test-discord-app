@@ -27,7 +27,7 @@ jobs:
             WORKER_NAME="test-discord-app"
           fi
 
-          sed -i "s/^\s*\"name\": \".*\"/\"name\": \"|__WORKER_NAME__|\"/" wrangler.jsonc
+          sed -i "s/^\s*\"name\": \".*\"/\"name\": \"$WORKER_NAME\"/" wrangler.jsonc
 
       - name: Commit and push changes
         run: |
