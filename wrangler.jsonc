@@ -1,5 +1,5 @@
 {
-"name": "|__WORKER_NAME__|",
+"name": "test-discord-app-dev",
   "main": "src/server.js",
   "compatibility_date": "2025-11-06",
 
