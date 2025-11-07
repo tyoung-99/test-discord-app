@@ -19,5 +19,5 @@
   "env": {
     "dev": { "name": "test-discord-app-dev" },
     "prod": { "name": "test-discord-app" }
-  }
+  },"name": "test-discord-app-dev"
 }
