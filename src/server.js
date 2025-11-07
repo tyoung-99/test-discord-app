@@ -12,10 +12,6 @@ import {
 
 const router = AutoRouter();
 
-router.get("/", (req, env) => {
-  return new Response(`👋 ${env.DISCORD_APPLICATION_ID}`);
-});
-
 router.post("/interactions", async (req, env) => {
   try {
     const { interaction, isValid } = await verifyDiscordRequest(req, env);
