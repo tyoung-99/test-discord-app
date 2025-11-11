@@ -1,6 +1,7 @@
 {
   "name": "test-discord-app",
   "main": "src/server.js",
+  "compatibility_flags": ["nodejs_compat"],
   "compatibility_date": "2025-11-06",
 
   "observability": {
